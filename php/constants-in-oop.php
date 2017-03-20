@@ -2,7 +2,7 @@
 
 class P
 {
-	const RULE = 'x * x';
+	const RULE = 'P';
 
 	public function show()
 	{
@@ -20,7 +20,29 @@ class P
 
 class A extends P
 {
-	const RULE = '2 * n';
+	const RULE = 'A';
+
+	public function show()
+	{
+		printf("self:   %s\n", self::RULE);
+		printf("static: %s\n", static::RULE);
+		printf("parent: %s\n", parent::RULE);
+	}
+}
+
+class B extends P
+{
+	const RULE = 'B';
+
+	public function show()
+	{
+		parent::show();
+	}
+}
+
+class C extends P
+{
+	const RULE = 'C';
 }
 
 $p = new P;
@@ -28,5 +50,13 @@ print("Class P:\n");
 $p->show();
 
 $a = new A;
-print("Class A:\n");
+print("\nClass A:\n");
 $a->show();
+
+$b = new B;
+print("\nClass B:\n");
+$b->show();
+
+$c = new C;
+print("\nClass C:\n");
+$c->show();
